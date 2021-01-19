@@ -1,13 +1,20 @@
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.Before;
+import org.junit.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.assertEquals;
 
-class AirportTest {
+public class AirportTest {
 
-    private Airport underTest;
+    private Airport airportUnderTest;
 
-    @BeforeEach
-    void setUp() {
-        underTest = new Airport();
+    @Before
+    public void setUp() {
+        airportUnderTest = new Airport();
+    }
+
+    @Test
+    public void itCanLandAPlane() {
+        airportUnderTest.land("747");
+        assertEquals(airportUnderTest.getPlanes().get(0), "747");
     }
 }
