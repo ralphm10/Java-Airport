@@ -1,21 +1,25 @@
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.ArrayList;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
+@RunWith(MockitoJUnitRunner.class)
 public class AirportTest {
 
     private Airport airportUnderTest;
     private ArrayList<Plane> landedPlanes;
 
     @Mock
-    Plane plane1;
+    Plane plane1 = Mockito.mock(Plane.class);
 
     @Mock
-    Plane plane2;
+    Plane plane2 = Mockito.mock(Plane.class);
 
     @Before
     public void setUp() {
@@ -26,6 +30,7 @@ public class AirportTest {
     @Test
     public void itCanInstructAPlaneToLand() {
         airportUnderTest.land(plane1);
+        System.out.println(landedPlanes);
         assertThat(landedPlanes).contains(plane1);
     }
 
