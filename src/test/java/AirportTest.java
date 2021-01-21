@@ -1,7 +1,7 @@
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class AirportTest {
 
@@ -17,7 +17,7 @@ public class AirportTest {
     @Test
     public void itCanLandAPlane() {
         airportUnderTest.land(planeUnderTest);
-        assertEquals(planeUnderTest, airportUnderTest.getPlanes().get(0));
+        assertThat(airportUnderTest.getPlanes().contains(planeUnderTest));
     }
 
     @Test
@@ -25,6 +25,6 @@ public class AirportTest {
         airportUnderTest.land(planeUnderTest);
         Plane anotherPlane = new Plane();
         airportUnderTest.land(anotherPlane);
-        assertEquals(anotherPlane, airportUnderTest.getPlanes().get(airportUnderTest.getPlanes().size()-1));
+        assertThat(airportUnderTest.getPlanes().contains(anotherPlane));
     }
 }
