@@ -30,7 +30,6 @@ public class AirportTest {
     @Test
     public void itCanInstructAPlaneToLand() {
         airportUnderTest.land(plane1);
-        System.out.println(landedPlanes);
         assertThat(landedPlanes).contains(plane1);
     }
 
