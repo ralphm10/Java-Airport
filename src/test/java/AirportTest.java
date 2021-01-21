@@ -15,6 +15,13 @@ public class AirportTest {
     @Test
     public void itCanLandAPlane() {
         airportUnderTest.land("747");
-        assertEquals(airportUnderTest.getPlanes().get(0), "747");
+        assertEquals("747", airportUnderTest.getPlanes().get(0));
+    }
+
+    @Test
+    public void itCanLandMultiplePlanes() {
+        airportUnderTest.land("747");
+        airportUnderTest.land("A380");
+        assertEquals("A380", airportUnderTest.getPlanes().get(airportUnderTest.getPlanes().size()-1));
     }
 }
