@@ -1,5 +1,6 @@
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mock;
 
 import java.util.ArrayList;
 
@@ -8,34 +9,37 @@ import static org.assertj.core.api.Assertions.*;
 public class AirportTest {
 
     private Airport airportUnderTest;
-    private Plane planeUnderTest;
     private ArrayList<Plane> landedPlanes;
+
+    @Mock
+    Plane plane1;
+
+    @Mock
+    Plane plane2;
 
     @Before
     public void setUp() {
         airportUnderTest = new Airport();
-        planeUnderTest = new Plane();
         landedPlanes = airportUnderTest.getPlanes();
     }
 
     @Test
     public void itCanInstructAPlaneToLand() {
-        airportUnderTest.land(planeUnderTest);
-        assertThat(landedPlanes).contains(planeUnderTest);
+        airportUnderTest.land(plane1);
+        assertThat(landedPlanes).contains(plane1);
     }
 
     @Test
     public void itCanInstructMultiplePlanesToLand() {
-        airportUnderTest.land(planeUnderTest);
-        Plane anotherPlane = new Plane();
-        airportUnderTest.land(anotherPlane);
-        assertThat(landedPlanes).contains(anotherPlane);
+        airportUnderTest.land(plane1);
+        airportUnderTest.land(plane2);
+        assertThat(landedPlanes).contains(plane2);
     }
 
     @Test
     public void itCanInstructAPlaneToTakeOff() {
-        airportUnderTest.land(planeUnderTest);
-        airportUnderTest.takeoff(planeUnderTest);
-        assertThat(landedPlanes).doesNotContain(planeUnderTest);
+        airportUnderTest.land(plane1);
+        airportUnderTest.takeoff(plane1);
+        assertThat(landedPlanes).doesNotContain(plane1);
     }
 }
