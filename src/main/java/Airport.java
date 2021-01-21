@@ -12,4 +12,7 @@ public class Airport {
         planes.add(plane);
     }
 
+    public void takeoff(Plane plane) {
+        planes.remove(plane);
+    }
 }

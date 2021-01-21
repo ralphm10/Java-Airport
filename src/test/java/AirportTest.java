@@ -3,7 +3,7 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.assertj.core.api.Assertions.*;
 
 public class AirportTest {
 
@@ -19,16 +19,23 @@ public class AirportTest {
     }
 
     @Test
-    public void itCanLandAPlane() {
+    public void itCanInstructAPlaneToLand() {
         airportUnderTest.land(planeUnderTest);
-        assertThat(landedPlanes.contains(planeUnderTest));
+        assertThat(landedPlanes).contains(planeUnderTest);
     }
 
     @Test
-    public void itCanLandMultiplePlanes() {
+    public void itCanInstructMultiplePlanesToLand() {
         airportUnderTest.land(planeUnderTest);
         Plane anotherPlane = new Plane();
         airportUnderTest.land(anotherPlane);
-        assertThat(landedPlanes.contains(anotherPlane));
+        assertThat(landedPlanes).contains(anotherPlane);
+    }
+
+    @Test
+    public void itCanInstructAPlaneToTakeOff() {
+        airportUnderTest.land(planeUnderTest);
+        airportUnderTest.takeoff(planeUnderTest);
+        assertThat(landedPlanes).doesNotContain(planeUnderTest);
     }
 }
