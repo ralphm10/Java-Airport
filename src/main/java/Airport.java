@@ -2,13 +2,13 @@ import java.util.ArrayList;
 
 public class Airport {
 
-    private ArrayList<String> planes = new ArrayList<String>();
+    private ArrayList<Plane> planes = new ArrayList<>();
 
-    public ArrayList<String> getPlanes() {
+    public ArrayList<Plane> getPlanes() {
         return planes;
     }
 
-    public void land(String plane) {
+    public void land(Plane plane) {
         planes.add(plane);
     }
 
