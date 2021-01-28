@@ -8,6 +8,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 import java.util.ArrayList;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.assertEquals;
 
 @RunWith(MockitoJUnitRunner.class)
 public class AirportTest {
@@ -45,5 +46,10 @@ public class AirportTest {
         airportUnderTest.land(plane1);
         airportUnderTest.takeoff(plane1);
         assertThat(landedPlanes).doesNotContain(plane1);
+    }
+
+    @Test
+    public void itHasACapacity() {
+        assertEquals(5,airportUnderTest.getCapacity());
     }
 }
