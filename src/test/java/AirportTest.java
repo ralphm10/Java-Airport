@@ -58,6 +58,12 @@ public class AirportTest {
     }
 
     @Test
+    public void defaultCapacityCanBeOverridden() {
+        Airport largeAirport = new Airport(20);
+        assertEquals(20,largeAirport.getCapacity());
+    }
+
+    @Test
     public void shouldThrowExceptionIfAirportIsAtCapacity() {
         airportUnderTest.land(plane1);
         airportUnderTest.land(plane2);
