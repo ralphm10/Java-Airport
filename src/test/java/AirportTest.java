@@ -8,7 +8,8 @@ import org.mockito.junit.MockitoJUnitRunner;
 import java.util.ArrayList;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @RunWith(MockitoJUnitRunner.class)
 public class AirportTest {
@@ -21,6 +22,9 @@ public class AirportTest {
 
     @Mock
     Plane plane2 = Mockito.mock(Plane.class);
+
+    @Mock
+    Plane plane3 = Mockito.mock(Plane.class);
 
     @Before
     public void setUp() {
@@ -50,6 +54,19 @@ public class AirportTest {
 
     @Test
     public void itHasACapacity() {
-        assertEquals(5,airportUnderTest.getCapacity());
+        assertEquals(2,airportUnderTest.getCapacity());
+    }
+
+    @Test
+    public void shouldThrowExceptionIfAirportIsAtCapacity() {
+        airportUnderTest.land(plane1);
+        airportUnderTest.land(plane2);
+        RuntimeException thrown = assertThrows(
+                RuntimeException.class,
+                () ->
+                        airportUnderTest.land(plane3));
+
+        assertTrue(thrown.getMessage().contains("Cannot land, airport full!"));
+
     }
 }

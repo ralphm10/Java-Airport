@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class Airport {
 
     private ArrayList<Plane> planes = new ArrayList<>();
-    private int capacity = 5;
+    private int capacity = 2;
 
     public ArrayList<Plane> getPlanes() {
         return planes;
@@ -13,7 +13,10 @@ public class Airport {
         return capacity;
     }
 
-    public void land(Plane plane) {
+    public void land(Plane plane) throws RuntimeException {
+        if (this.getPlanes().size() == this.capacity) {
+            throw new RuntimeException("Cannot land, airport full!");
+        }
         planes.add(plane);
     }
 
